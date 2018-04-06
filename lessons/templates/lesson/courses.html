@@ -1,0 +1,178 @@
+{% extends 'lesson/base.html' %}
+{% load staticfiles %}
+
+{% block title %} Learnthetech | Courses {% endblock %}
+
+{% block banner %}
+	<div class="banner1">
+		<nav class="navbar navbar-default">
+			<div class="navbar-header navbar-left">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<h1><a class="navbar-brand" href="/"><span>L</span>earnthetech</a></h1>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+				<nav class="link-effect-2" id="link-effect-2">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/"><span data-hover="Home">Home</span></a></li>
+						<li><a href="/courses/"><span data-hover="Courses">Courses</span></a></li>
+						<li><a href="/services/"><span data-hover="Services">Services</span></a></li>
+						<li><a href="/"><span data-hover="Blog">Blog</span></a></li>
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'logout' %}"><span data-hover="logout">logout</span></a></li>
+						{% else %}
+						<li><a href="#register"><span data-hover="Register">Register</span></a></li>
+						<li><a href="{% url 'login' %}"><span data-hover="login">login</span></a></li>
+						{% endif %}
+					</ul>
+				</nav>
+			</div>
+			<div class="w3_agile_phone">
+				<p><i class="fa fa-phone" aria-hidden="true"></i> +234 7033389645</p>
+				{% if user.is_authenticated %}
+				<p><i class="fa fa-user" aria-hidden="true"></i>logged as {{ user.username }}</p>
+				{% endif %}
+			</div>
+		</nav>
+		<div class="wthree_banner1_info">
+			<div class="container">
+				<h3><span>C</span>ourses</h3>
+			</div>
+		</div>
+	</div>
+{% endblock banner %}
+
+{% block content %}
+{% if user.is_authenticated %}
+	<div class="courses">
+		<div class="container"> 
+			<div class="w3_agile_team_grid">
+				<div class="w3_agile_team_grid_left">
+					<p>01</p>
+					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+				</div>
+				<div class="w3_agile_team_grid_right">
+					<h3>Courses <span>Offered</span></h3>
+					<p>Select below and enroll for a course</p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="agileits_w3layouts_team_grids w3ls_courses_grids">
+				<div class="col-md-6 w3ls_banner_bottom_left w3ls_courses_left">
+					{% for list_of_courses in courses %}
+					<div class="w3ls_courses_left_grids">
+						<div class="w3ls_courses_left_grid">
+							<h3><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								<a href="{% url 'course_read' pk=list_of_courses.pk%}">{{ list_of_courses.title }}</a>
+								<a style="float: right; box-shadow: 10px 10px 15px;" href="{% url 'course_read' pk=list_of_courses.pk%}"">Enroll</a>
+								<br>
+								<p><b style="color: blue">Starts on: </b>{{ list_of_courses.start_time|date:"D d M Y" }} 
+									<b style="color: blue">End on:</b> {{ list_of_courses.finish_time|date:"D d M Y" }}</p>
+							</h3>
+							<p>{{ list_of_courses.course_description|safe }}</p>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="col-md-6 agileits_courses_right">
+					<img src="{% static 'images/2.jpg' %}" alt=" " class="img-responsive" />
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	{% else %}
+		<div class="courses">
+		<div class="container"> 
+			
+				<div class="col-md-6 w3ls_banner_bottom_left w3ls_courses_left">
+					<p>login here to view and enroll for a course <a href="{% url 'login' %}">Login</a></p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	{% endif %}
+<!-- //courses -->
+<!-- stats -->
+	<div class="stats">
+		<div class="col-md-3 w3layouts_stats_left w3_counter_grid">
+			<p class="counter">{{ c_staff }}</p>
+			<h3>Staffs</h3>
+		</div>
+		<div class="col-md-3 w3layouts_stats_left w3_counter_grid1">
+			<p class="counter">{{ c_students }}</p>
+			<h3>Students</h3>
+		</div>
+		<div class="col-md-3 w3layouts_stats_left w3_counter_grid2">
+			<p class="counter">{{ c_courses }}</p>
+			<h3>Courses</h3>
+		</div>
+		<div class="col-md-3 w3layouts_stats_left w3_counter_grid3">
+			<p class="counter">{{ c_courses }}</p>
+		<h3>Projects</h3>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+<!-- //stats -->
+<!-- stats -->
+	<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+	<script src="{% static 'js/jquery.countup.js' %}"></script>
+		<script>
+			$('.counter').countUp();
+		</script>
+<!-- //stats -->
+<!-- stats-bottom -->
+	<div class="team">
+		<div class="container"> 
+			<div class="w3_agile_team_grid">
+				<div class="w3_agile_team_grid_left">
+					<p>02</p>
+					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+				</div>
+				<div class="w3_agile_team_grid_right">
+					<h3>Our <span>Skills</span></h3>
+					<p>Skilled in:</p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="agileits_w3layouts_team_grids">
+				<div class="col-md-6 w3l_stats_bottom_grid_left">
+					<img src="{% static 'images/5-new.jpg' %}" alt=" " class="img-responsive" />
+				</div>
+				<div class="col-md-6 w3l_stats_bottom_grid_right">
+					<div class='bar_group'>
+						<div class='bar_group__bar thin elastic' label='HTML / CSS Design' value='130'>
+							<div class='w3ls_bar_group__bar_pos'>
+								<p>85%</p>
+							</div>
+						</div>
+						<div class='bar_group__bar thin elastic' label='PHP / MySql' value='98'>
+							<div class='w3ls_bar_group__bar_pos'>
+								<p>45%</p>
+							</div>
+						</div>
+						<div class='bar_group__bar thin elastic' label='Python / Django' value='160'>
+							<div class='w3ls_bar_group__bar_pos'>
+								<p>55%</p>
+							</div>
+						</div>
+						<div class='bar_group__bar thin elastic' label='Visual Basic .Net' value='110'>
+							<div class='w3ls_bar_group__bar_pos'>
+								<p>60%</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!-- //stats-bottom -->	
+<script src="{% static 'js/bars.js' %}"></script>
+{% endblock %}

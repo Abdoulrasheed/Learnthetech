@@ -1,0 +1,101 @@
+{% extends 'lesson/base.html' %}
+{% load staticfiles %}
+{% block title %} Services {% endblock %}
+
+{% block banner %}
+<!-- banner -->
+	<div class="banner1">
+		<nav class="navbar navbar-default">
+			<div class="navbar-header navbar-left">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<h1><a class="navbar-brand" href="/"><span>L</span>earnthetech</a></h1>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/"><span data-hover="Home">Home</span></a></li>
+						<li><a href="/courses/"><span data-hover="Courses">Courses</span></a></li>
+						<li><a href="/services/"><span data-hover="Services">Services</span></a></li>
+						<li><a href="/"><span data-hover="Blog">Blog</span></a></li>
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'logout' %}"><span data-hover="logout">logout</span></a></li>
+						{% else %}
+						<li><a href="#register"><span data-hover="Register">Register</span></a></li>
+						<li><a href="{% url 'login' %}"><span data-hover="login">login</span></a></li>
+						{% endif %}
+					</ul>
+				</nav>
+			</div>
+			<div class="w3_agile_phone">
+				{% if user.is_authenticated %}
+				<p><i class="fa fa-user" aria-hidden="true"></i>logged as {{ user.username }}</p>
+				{% endif %}
+				{% for mobile in instructors %}
+				<p><i class="fa fa-phone" aria-hidden="true"></i>{{ mobile.phone }}</p>
+				{% endfor %}
+			</div>
+		</nav>
+		<div class="wthree_banner1_info">
+			<div class="container">
+				{% if info %}
+				<h3><span class="fa fa-info-circle"> Hello! {{ request.user }} {{ info }}</span></h3>
+				{% else %}
+				<h3><span>{{ l.instructor.course }}</span></h3>
+				<h4><span>{{ l.instructor }}</span></h4>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+<!-- //banner -->	
+{% endblock banner %}
+{% block content %}
+<!-- services -->
+	<div class="courses">
+		<div class="container"> 	
+			{% for lessons in lessons %}
+			<div class="w3_agile_team_grid">
+				<div class="w3_agile_team_grid_left">
+					<p>0{{ forloop.counter }}</p>
+					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+				</div>
+				<div class="w3_agile_team_grid_right">
+					<h3><span>{{ lessons.lesson_title }}</span></h3>
+					<p>{{ lessons.lesson_body|linebreaksbr }}</p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="agileinfo_services_grids">
+				<div class="col-md-4 w3_agile_services_grid">
+					<div class="agileits_w3layouts_services_grid1">
+						<div class="w3_agileits_services_grid1">
+							<div class="w3_agileits_services_grid1l">
+								<img src="{% static 'images/1.png' %}" alt=" " class="img-responsive" />
+							</div>
+							<div class="w3_agileits_services_grid1r">
+								<ul>
+									<li><i class="fa fa-star" aria-hidden="true"></i></li>
+									<li><i class="fa fa-star" aria-hidden="true"></i></li>
+									<li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
+									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+								</ul>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="w3_agileits_services_grid1">
+							<p> {{ lessons.instructor.first_name }} {{ lessons.instructor.last_name }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+<!-- //services -->
+	{% endblock %}

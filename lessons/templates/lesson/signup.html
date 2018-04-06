@@ -1,0 +1,288 @@
+{% extends 'lesson/base.html' %}
+{% load staticfiles %}
+{% block title %}Learnthetech | Home {% endblock %}
+<body>
+	{% block banner %}
+<!-- banner -->
+	<div class="banner">
+		<nav class="navbar navbar-default">
+			<div class="navbar-header navbar-left">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<h1><a class="navbar-brand" href="/"><span>L</span>earnthetech</a></h1>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+				<nav class="link-effect-2" id="link-effect-2">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/"><span data-hover="Home">Home</span></a></li>
+						<li><a href="/courses/"><span data-hover="Courses">Courses</span></a></li>
+						<li><a href="/services/"><span data-hover="Services">Services</span></a></li>
+						<li><a href="/"><span data-hover="Blog">Blog</span></a></li>
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'logout' %}"><span data-hover="logout">logout</span></a></li>
+						{% else %}
+						<li><a href="#register"><span data-hover="Register">Register</span></a></li>
+						<li><a href="{% url 'login' %}"><span data-hover="login">login</span></a></li>
+						{% endif %}
+					</ul>
+				</nav>
+			</div>
+			<div class="w3_agile_phone">
+				{% if user.is_authenticated %}
+				<p><i class="fa fa-user" aria-hidden="true"></i>logged as {{ user.username }}</p>
+				{% endif %}
+				{% for mobile in instructors %}
+				<p><i class="fa fa-phone" aria-hidden="true"></i> {{ mobile.phone }}</p>
+				{% endfor %}
+			</div>
+		</nav>
+		<div class="container">
+			<div class="agile_banner_info">
+				<div class="agile_banner_info1">
+					<div id="typed-strings" class="agileits_w3layouts_strings">
+						<p>{{ user.first_name }} <i> Welcome to</i> Learnthtech</p>
+						<p>we <i>  can help you build</i> your dreams</p>
+						<p><i>Technology</i> is a journey not a race</p>
+						<p>trust <i> in us !</i></p>
+					</div>
+					<span id="typed" style="white-space:pre;"></span>
+				</div>
+			</div>
+			<div class="banner_agile_para">
+				<p>Join learnthetech and develope yourself with more exciting recent world technologies.</p>
+			</div>
+			<div class="w3_agile_social_icons">
+				<ul class="agileinfo_social_icons">
+					<li><a href="#" class="w3_agileits_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li><a href="#" class="wthree_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+					<li><a href="#" class="agileinfo_google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+			<div class="w3_banner_color">
+				<span></span>
+			</div>
+			<div class="w3_scroll_arrow">
+			  <a href="#team" class="scroll scroll-down"><span class="dot"> </span></a>
+			</div>
+		</div>
+	</div>
+<!-- //banner -->	
+{% endblock banner %}
+{% block content %}
+<!-- banner-bottom -->	
+	<div class="banner-bottom">
+		<div class="container">
+			<div class="col-md-6 w3ls_banner_bottom_left">
+				<div class="w3ls_banner_bottom_left1">
+					<p>01</p>
+					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+				</div>
+				<div class="w3ls_banner_bottom_right1">
+					<h2>Upcoming Events<span> | Learnthetech </span></h2>
+					<p>Upcoming Events</p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="col-md-6 w3ls_banner_bottom_right">
+				<section class="slider">
+					<div class="flexslider">
+						<ul class="slides">
+							<li>	
+								<div class="agileits_w3layouts_banner_bottom_grid">
+									<img src="{% static 'images/1.jpg' %}" alt=" " class="img-responsive" />
+								</div>
+							</li>
+							<li>	
+								<div class="agileits_w3layouts_banner_bottom_grid">
+									<img src="{% static 'images/2.jpg' %}" alt=" " class="img-responsive" />
+								</div>
+							</li>
+							<li>	
+								<div class="agileits_w3layouts_banner_bottom_grid">
+									<img src="{% static 'images/3.jpg' %}" alt=" " class="img-responsive" />
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //banner-bottom -->	
+<!-- bootstrap-pop-up -->
+	<div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					Learnthetech
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+				</div>
+				<section>
+					<div class="modal-body">
+						<img src="{% static 'images/10.jpg' %}" alt=" " class="img-responsive" />
+						<p>A team of professional developers that helps you to be a better developer, and reach-out your goals.</i></p>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+<!-- //bootstrap-pop-up -->
+<!-- register -->
+{% if user.is_authenticated %}
+	<div class="register">
+		<div class="container">
+			<div class="col-md-6 w3layouts_register_left">
+				<h3><span>Welcome</span> {{ user.get_full_name|upper }} <small>({{ user.username }})</small>!</h3>
+				<p>Visit our courses page and start learning</p>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //register -->
+{% else %}
+<div id="register" class="register">
+		<div class="container">
+			<div class="col-md-6 w3layouts_register_right">
+				<form method="post">	
+					{% csrf_token %}
+					{% for field in form %}
+					 <p>{{ field.label_tag }}
+					 <br>
+					 	{{ field }}
+					 	<br>
+					 	{% for error in field.errors %}
+					 	<p style="color: red">{{ error }}</p>
+					 	{% endfor %}
+					 </p>
+					 <input type="hidden" name="is_student" value="is_student">
+					 {% endfor %}
+					 <br>
+					<button type="submit">Send</button>
+				</form>
+			</div>
+			<div class="col-md-6 w3layouts_register_left">
+				<h3><span>Register</span> now</h3>
+				<p>Register and enroll for your future, join us and feel the power</p>
+				<h3><span>Already have an account</span> <a href="">login</a></h3>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+{% endif %}
+<!-- team -->
+	<div class="team w3_women_team" id="team">
+		<div class="container">	
+			<div class="w3_agile_team_grid">
+				<div class="w3_agile_team_grid_left">
+					<p>02</p>
+					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+				</div>
+				<div class="w3_agile_team_grid_right">
+					<h3>meet our <span>Learnthetech</span> team</h3>
+					<p>Join these awesome people and contribute to learnthetech, mail us !</p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="agileits_w3layouts_team_grids">
+				{% for ins in instructors %}
+				<div class="col-md-4 agileits_w3layouts_team_grid">
+					<h3>{{ ins.first_name }} {{ ins.last_name }}</h3>
+					<p>{{ ins.position }}</p>
+					<ul class="agileinfo_social_icons w3_agileits_social_icons">
+						<li><a href="https://facebook.com/{{ ins.facebook_id }}" class="w3_agileits_facebook">
+							<i class="fa fa-facebook" aria-hidden="true"></i></a>
+						</li>
+						<li><a href="https://twitter.com/{{ ins.twitter_handler }}" class="wthree_twitter">
+							<i class="fa fa-twitter" aria-hidden="true"></i></a>
+						</li>
+						<li><a href="#" class="agileinfo_google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+						<li><a href="#" class="agileits_pinterest"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+					</ul>
+					<img src="{% static 'images/5.jpg' %}" alt=" " class="img-responsive" />
+				</div>
+				{% endfor %}
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!-- //team -->
+<!-- gallery-top -->
+	<div class="gallery-top">
+		<div class="agileinfo_gallery_top">
+			<h3><span>Technology</span> is taking over the world, Get your hands on it Now !</h3>
+		</div>
+	</div>
+<!-- //gallery-top -->
+<!-- gallery -->
+	<div class="gallery">
+		<ul id="flexiselDemo1">	
+			<li>
+				<div class="wthree_gallery_grid">
+					<a href="{% static 'images/8.jpg' %}" class="lsb-preview" data-lsb-group="header">
+						<div class="view second-effect">
+							<img src="{% static 'images/8.jpg' %}" alt="" class="img-responsive" />
+							<div class="mask">
+								<p>Learnthetech</p>
+							</div>
+						</div>	
+					</a>
+				</div>
+			</li>
+			<li>
+				<div class="wthree_gallery_grid">
+					<a href="{% static 'images/9.jpg' %}" class="lsb-preview" data-lsb-group="header">
+						<div class="view second-effect">
+							<img src="{% static 'images/9.jpg' %}" alt="" class="img-responsive" />
+							<div class="mask">
+								<p>Learnthetech</p>
+							</div>
+						</div>	
+					</a>
+				</div>
+			</li>
+			<li>
+				<div class="wthree_gallery_grid">
+					<a href="{% static 'images/10.jpg' %}" class="lsb-preview" data-lsb-group="header">
+						<div class="view second-effect">
+							<img src="{% static 'images/10.jpg' %}" alt="" class="img-responsive" />
+							<div class="mask">
+								<p>Learnthetech</p>
+							</div>
+						</div>	
+					</a>
+				</div>
+			</li>
+			<li>
+				<div class="wthree_gallery_grid">
+					<a href="{% static 'images/11.jpg' %}" class="lsb-preview" data-lsb-group="header">
+						<div class="view second-effect">
+							<img src="{% static 'images/11.jpg' %}" alt="" class="img-responsive" />
+							<div class="mask">
+								<p>Learnthetech</p>
+							</div>
+						</div>	
+					</a>
+				</div>
+			</li>
+			<li>
+				<div class="wthree_gallery_grid">
+					<a href="{% static 'images/12.jpg' %}" class="lsb-preview" data-lsb-group="header">
+						<div class="view second-effect">
+							<img src="{% static 'images/12.jpg' %}" alt="" class="img-responsive" />
+							<div class="mask">
+								<p>Learnthetech</p>
+							</div>
+						</div>	
+					</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+<!-- //gallery -->
+{% endblock content %}
