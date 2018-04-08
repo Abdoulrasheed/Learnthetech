@@ -68,7 +68,7 @@
 					<div class="w3ls_courses_left_grids">
 						<div class="w3ls_courses_left_grid">
 							<h3><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-								<a href="{% url 'course_read' pk=list_of_courses.pk%}">{{ list_of_courses.title }}</a>
+								<a href="{% url 'course_read' pk=list_of_courses.pk %}">{{ list_of_courses.title }}</a>
 								<a style="float: right; box-shadow: 10px 10px 15px;" href="{% url 'course_read' pk=list_of_courses.pk%}"">Enroll</a>
 								<br>
 								<p><b style="color: blue">Starts on: </b>{{ list_of_courses.start_time|date:"D d M Y" }} 

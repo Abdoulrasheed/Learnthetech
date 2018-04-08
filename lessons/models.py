@@ -17,7 +17,6 @@ class Course(models.Model):
 class Instructor(models.Model):
 	first_name = models.CharField(max_length=50)
 	last_name = models.CharField(max_length=50)
-	head_shot = models.ImageField(upload_to='lessons/static/images/head_shots', blank=True, null=True)
 	email = models.EmailField(blank=True, null=True)
 	twitter_handler = models.CharField(max_length=50, blank=True, null=True)
 	facebook_id = models.CharField(max_length=50, blank=True, null=True)

@@ -1,6 +1,6 @@
 {% extends 'lesson/base.html' %}
 {% load staticfiles %}
-{% block title %}Learnthetech | Home {% endblock %}
+{% block title %}Learnonline | Home {% endblock %}
 <body>
 	{% block banner %}
 <!-- banner -->
@@ -13,7 +13,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<h1><a class="navbar-brand" href="/"><span>L</span>earnthetech</a></h1>
+				<h1><a class="navbar-brand" href="/"><span>L</span>earnonline</a></h1>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
@@ -73,54 +73,13 @@
 	</div>
 <!-- //banner -->	
 {% endblock banner %}
-{% block content %}
-<!-- banner-bottom -->	
-	<div class="banner-bottom">
-		<div class="container">
-			<div class="col-md-6 w3ls_banner_bottom_left">
-				<div class="w3ls_banner_bottom_left1">
-					<p>01</p>
-					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-				</div>
-				<div class="w3ls_banner_bottom_right1">
-					<h2>Upcoming Events<span> | Learnthetech </span></h2>
-					<p>Upcoming Events</p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="col-md-6 w3ls_banner_bottom_right">
-				<section class="slider">
-					<div class="flexslider">
-						<ul class="slides">
-							<li>	
-								<div class="agileits_w3layouts_banner_bottom_grid">
-									<img src="{% static 'images/1.jpg' %}" alt=" " class="img-responsive" />
-								</div>
-							</li>
-							<li>	
-								<div class="agileits_w3layouts_banner_bottom_grid">
-									<img src="{% static 'images/2.jpg' %}" alt=" " class="img-responsive" />
-								</div>
-							</li>
-							<li>	
-								<div class="agileits_w3layouts_banner_bottom_grid">
-									<img src="{% static 'images/3.jpg' %}" alt=" " class="img-responsive" />
-								</div>
-							</li>
-						</ul>
-					</div>
-				</section>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-<!-- //banner-bottom -->	
+{% block content %}	
 <!-- bootstrap-pop-up -->
 	<div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					Learnthetech
+					Learnonline
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
 				</div>
 				<section>
@@ -184,7 +143,7 @@
 					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
 				</div>
 				<div class="w3_agile_team_grid_right">
-					<h3>meet our <span>Learnthetech</span> team</h3>
+					<h3>meet our <span>Learnonline</span> team</h3>
 					<p>Join these awesome people and contribute to learnthetech, mail us !</p>
 				</div>
 				<div class="clearfix"> </div>
@@ -204,7 +163,7 @@
 						<li><a href="#" class="agileinfo_google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
 						<li><a href="#" class="agileits_pinterest"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
 					</ul>
-					<img src="{% static 'images/5.jpg' %}" alt=" " class="img-responsive" />
+					<img src="" alt="{{ ins.first_name }}'s image appear here" class="img-responsive" />
 				</div>
 				{% endfor %}
 				<div class="clearfix"> </div>
@@ -228,7 +187,7 @@
 						<div class="view second-effect">
 							<img src="{% static 'images/8.jpg' %}" alt="" class="img-responsive" />
 							<div class="mask">
-								<p>Learnthetech</p>
+								<p>Learnonline</p>
 							</div>
 						</div>	
 					</a>
@@ -240,7 +199,7 @@
 						<div class="view second-effect">
 							<img src="{% static 'images/9.jpg' %}" alt="" class="img-responsive" />
 							<div class="mask">
-								<p>Learnthetech</p>
+								<p>Learnonline</p>
 							</div>
 						</div>	
 					</a>
@@ -252,7 +211,7 @@
 						<div class="view second-effect">
 							<img src="{% static 'images/10.jpg' %}" alt="" class="img-responsive" />
 							<div class="mask">
-								<p>Learnthetech</p>
+								<p>Learnonline</p>
 							</div>
 						</div>	
 					</a>
@@ -264,7 +223,7 @@
 						<div class="view second-effect">
 							<img src="{% static 'images/11.jpg' %}" alt="" class="img-responsive" />
 							<div class="mask">
-								<p>Learnthetech</p>
+								<p>Learnonline</p>
 							</div>
 						</div>	
 					</a>
@@ -276,7 +235,7 @@
 						<div class="view second-effect">
 							<img src="{% static 'images/12.jpg' %}" alt="" class="img-responsive" />
 							<div class="mask">
-								<p>Learnthetech</p>
+								<p>Learnonline</p>
 							</div>
 						</div>	
 					</a>

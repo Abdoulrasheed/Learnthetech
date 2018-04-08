@@ -32,8 +32,8 @@ class LessonAdmin(admin.ModelAdmin):
 	def instructor(self, obj):
 		return obj.instructor.first_name
 
-admin.site.site_header = "Abdoulthegreat Admin"
-admin.site.site_title = "Abdul Admin Portal"
+admin.site.site_header = "LearnOnline Admin"
+admin.site.site_title = "LearnOnline Admin Panel"
 admin.site.index_title = "Welcome to Abdoulthegreat Portal"
 
 admin.site.register(Instructor, InstructorAdmin)
