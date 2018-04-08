@@ -15,9 +15,12 @@ def course_list(request):
     stud = User.objects.all()
 
     c_students = stud.count()
-    c_staff = ins.count()
+    if ins:
+        c_staff = ins.count()
+    else:
+        c_staff = 0
     c_courses = courses.count()
-    return render(request, 'lesson/courses.html', {'courses': courses, 'c_courses': c_courses, 'c_students': c_students, 'c_staff': c_staff, 'instructor': ins[0] })
+    return render(request, 'lesson/courses.html', {'courses': courses, 'c_courses': c_courses, 'c_students': c_students, 'c_staff': c_staff})
 
 
 @login_required
