@@ -20,6 +20,8 @@ class Instructor(models.Model):
 	email = models.EmailField(blank=True, null=True)
 	twitter_handler = models.CharField(max_length=50, blank=True, null=True)
 	facebook_id = models.CharField(max_length=50, blank=True, null=True)
+	pinterest = models.CharField(max_length=50, blank=True, null=True)
+	google_plus = models.CharField(max_length=50, blank=True, null=True)
 	position = models.CharField(max_length=30, blank=True, null=True)
 	phone = models.CharField(max_length=15, blank=True, null=True)
 	course = models.ForeignKey(Course, on_delete=models.CASCADE)
