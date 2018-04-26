@@ -4,7 +4,7 @@ from lessons.models import *
 
 
 class StudentAdmin(admin.ModelAdmin):
-	list_display = ('student',)
+	list_display = ('student','course_enrolled')
 
 	def student(self, obj):
 		return obj.Student.student
@@ -32,9 +32,9 @@ class LessonAdmin(admin.ModelAdmin):
 	def instructor(self, obj):
 		return obj.instructor.first_name
 
-admin.site.site_header = "LearnOnline Admin"
-admin.site.site_title = "LearnOnline Admin Panel"
-admin.site.index_title = "Welcome to Abdoulthegreat Portal"
+admin.site.site_header = "Learnonline Admin"
+admin.site.site_title = "Learnonline Admin Panel"
+admin.site.index_title = "Welcome to Learnonline Administration"
 
 admin.site.register(Instructor, InstructorAdmin)
 admin.site.register(Student, StudentAdmin)

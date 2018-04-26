@@ -19,21 +19,21 @@
 			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 				<nav class="link-effect-2" id="link-effect-2">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/"><span data-hover="Home">Home</span></a></li>
-						<li><a href="/courses/"><span data-hover="Courses">Courses</span></a></li>
-						<li><a href="/services/"><span data-hover="Services">Services</span></a></li>
-						<li><a href="/"><span data-hover="Blog">Blog</span></a></li>
+						<li><a href="/">Home</a></li>
+						<li class="active"><a href="/courses/">Courses</a></li>
+						<li><a href="/services/">Services</a></li>
+						<li><a href="/">Blog</span></a></li>
 						{% if user.is_authenticated %}
-						<li><a href="{% url 'logout' %}"><span data-hover="logout">logout</span></a></li>
+						<li><a href="{% url 'logout' %}">logout</a></li>
 						{% else %}
-						<li><a href="#register"><span data-hover="Register">Register</span></a></li>
-						<li><a href="{% url 'login' %}"><span data-hover="login">login</span></a></li>
+						<li><a href="#register">Register</a></li>
+						<li><a href="{% url 'login' %}">login</a></li>
 						{% endif %}
 					</ul>
 				</nav>
 			</div>
 			<div class="w3_agile_phone">
-				<p><i class="fa fa-phone" aria-hidden="true"></i> +234 7033389645</p>
+				<p><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:+234 7033389645">+234 7033389645</a></p>
 				{% if user.is_authenticated %}
 				<p><i class="fa fa-user" aria-hidden="true"></i>logged as {{ user.username }}</p>
 				{% endif %}
@@ -65,18 +65,20 @@
 			<div class="agileits_w3layouts_team_grids w3ls_courses_grids">
 				<div class="col-md-6 w3ls_banner_bottom_left w3ls_courses_left">
 					{% for list_of_courses in courses %}
-					<div class="w3ls_courses_left_grids">
-						<div class="w3ls_courses_left_grid">
-							<h3><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-								<a href="{% url 'course_read' pk=list_of_courses.pk %}">{{ list_of_courses.title }}</a>
-								<a style="float: right; box-shadow: 10px 10px 15px;" href="{% url 'course_read' pk=list_of_courses.pk%}"">Enroll</a>
-								<br>
-								<p><b style="color: blue">Starts on: </b>{{ list_of_courses.start_time|date:"D d M Y" }} 
-									<b style="color: blue">End on:</b> {{ list_of_courses.finish_time|date:"D d M Y" }}</p>
-							</h3>
-							<p>{{ list_of_courses.course_description|safe }}</p>
+					<div style="margin-top: 10px;" class="agile_services_grid1 wthree_services_grid1">
+						<h3 style="color: #ffffff">
+							<a href="{% url 'course_read' pk=list_of_courses.pk %}">{{ list_of_courses.title }}</a>
+						</h3>
+						<div class="agile_services_grid1_sub">
+							<small style="color: #ffffff">
+							<b>{{ list_of_courses.start_time|date:"D d M Y" }}
+							  - 
+							{{ list_of_courses.finish_time|date:"D d M Y" }}</b>
+							</small>
 						</div>
+						<h4><a href="{% url 'enroll' pk=list_of_courses.pk%}"">Enroll now</a></span></h4>
 					</div>
+					<p style="margin-top: 10px" class="txt-responsive">{{ list_of_courses.course_description|safe }}</p>
 					{% endfor %}
 				</div>
 				<div class="col-md-6 agileits_courses_right">

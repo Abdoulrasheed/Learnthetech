@@ -19,15 +19,15 @@
 			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 				<nav class="link-effect-2" id="link-effect-2">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/"><span data-hover="Home">Home</span></a></li>
-						<li><a href="/courses/"><span data-hover="Courses">Courses</span></a></li>
-						<li><a href="/services/"><span data-hover="Services">Services</span></a></li>
-						<li><a href="/"><span data-hover="Blog">Blog</span></a></li>
+						<li class="active"><a href="/">Home</a></li>
+						<li><a href="/courses/">Courses</a></li>
+						<li><a href="/services/">Services</a></li>
+						<li><a href="/">Blog</a></li>
 						{% if user.is_authenticated %}
-						<li><a href="{% url 'logout' %}"><span data-hover="logout">logout</span></a></li>
+						<li><a href="{% url 'logout' %}">logout</a></li>
 						{% else %}
-						<li><a href="#register"><span data-hover="Register">Register</span></a></li>
-						<li><a href="{% url 'login' %}"><span data-hover="login">login</span></a></li>
+						<li><a href="#register">Register</a></li>
+						<li><a href="{% url 'login' %}">login</a></li>
 						{% endif %}
 					</ul>
 				</nav>
@@ -37,7 +37,7 @@
 				<p><i class="fa fa-user" aria-hidden="true"></i>logged as {{ user.username }}</p>
 				{% endif %}
 				{% for mobile in instructors %}
-				<p><i class="fa fa-phone" aria-hidden="true"></i> {{ mobile.phone }}</p>
+				<p><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:{{ mobile.phone }}" >{{ mobile.phone }}</p>
 				{% endfor %}
 			</div>
 		</nav>
@@ -195,9 +195,9 @@
 			</li>
 			<li>
 				<div class="wthree_gallery_grid">
-					<a href="{% static 'images/9.jpg' %}" class="lsb-preview" data-lsb-group="header">
+					<a href="{% static 'images/14.jpg' %}" class="lsb-preview" data-lsb-group="header">
 						<div class="view second-effect">
-							<img src="{% static 'images/9.jpg' %}" alt="" class="img-responsive" />
+							<img src="{% static 'images/14.jpg' %}" alt="" class="img-responsive" />
 							<div class="mask">
 								<p>Learnonline</p>
 							</div>

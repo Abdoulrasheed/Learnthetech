@@ -19,15 +19,15 @@
 			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 				<nav class="link-effect-2" id="link-effect-2">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/"><span data-hover="Home">Home</span></a></li>
-						<li><a href="/courses/"><span data-hover="Courses">Courses</span></a></li>
-						<li><a href="/services/"><span data-hover="Services">Services</span></a></li>
-						<li><a href="/"><span data-hover="Blog">Blog</span></a></li>
+						<li><a href="/">Home</li>
+						<li><a href="/courses/">Courses</a></li>
+						<li class="active"><a href="/services/">Services</a></li>
+						<li><a href="https://mautechblog.pythonanywhere.com">Blog</a></li>
 						{% if user.is_authenticated %}
-						<li><a href="{% url 'logout' %}"><span data-hover="logout">logout</span></a></li>
+						<li><a href="{% url 'logout' %}">logout</a></li>
 						{% else %}
-						<li><a href="#register"><span data-hover="Register">Register</span></a></li>
-						<li><a href="{% url 'login' %}"><span data-hover="login">login</span></a></li>
+						<li><a href="#register">Register</a></li>
+						<li><a href="{% url 'login' %}">login</a></li>
 						{% endif %}
 					</ul>
 				</nav>
@@ -51,6 +51,12 @@
 {% endblock banner %}
 {% block content %}
 <!-- services -->
+<style>
+	.img {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+</style>
 	<div class="courses">
 		<div class="container"> 	
 			<div class="w3_agile_team_grid">
@@ -68,11 +74,11 @@
 				{% for p in instructors %}
 				<div class="col-md-4 w3_agile_services_grid">
 					<div class="agile_services_grid1 wthree_services_grid1">
-						<h3>{{ p.course.title}}</h3>
+						<h3 style="color: green">{{ p.course.title}}</h3>
 						<div class="agile_services_grid1_sub">
-							<small style="color: white">{{ p.course.start_time }} - {{ p.course.finish_time }}</small>
+							<small style="color: green">{{ p.course.start_time }} - {{ p.course.finish_time }}</small>
 						</div>
-						<h4><a href="#">Enroll Now</a></span></h4>
+						<h4><a href="{% url 'enroll' pk=p.course.pk%}"">Enroll now</a></span></h4>
 					</div>
 					<div class="agileits_w3layouts_services_grid1">
 						<div class="w3_agileits_services_grid1">
