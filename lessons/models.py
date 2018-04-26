@@ -25,6 +25,7 @@ class Instructor(models.Model):
 	position = models.CharField(max_length=30, blank=True, null=True)
 	phone = models.CharField(max_length=15, blank=True, null=True)
 	course = models.ForeignKey(Course, on_delete=models.CASCADE)
+	photo = models.ImageField(upload_to="gallery")
 
 	def __str__(self):
 		return self.first_name + " " + self.last_name
@@ -40,6 +41,7 @@ class Lesson(models.Model):
 	instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
 	lesson_title = models.CharField(max_length=200, blank=True, null=True)
 	lesson_body = models.TextField(blank=True, null=True)
+	video = models.URLField(max_length=1000, blank=True)
 	published_date = models.DateTimeField(auto_now_add=True	)
 
 	def __str__(self):
