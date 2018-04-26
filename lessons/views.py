@@ -7,10 +7,14 @@ from django.shortcuts import render, redirect
 from lessons.forms import SignUpForm
 from lessons.models import Student, Instructor, Lesson, Course
 from django.shortcuts import get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 @login_required
 def course_list(request):
     courses = Course.objects.all().order_by('-start_time')
+    
     ins = Instructor.objects.all()
     stud = User.objects.all()
 
@@ -27,7 +31,16 @@ def course_list(request):
 def course_read(request, pk):
     lessons = Lesson.objects.filter(instructor_id = pk).order_by('-instructor_id')
     if lessons:
-        return render(request, 'lesson/course_read.html', {'lessons': lessons, 'l':lessons[0]})
+        page = request.GET.get('page', 1)
+        paginator = Paginator(lessons, 1)
+
+        try:
+            less = paginator.page(page)
+        except PageNotAnInteger:
+            less = paginator.page(1)
+        except EmptyPage:
+            less = paginator.page(paginator.num_pages)
+        return render(request, 'lesson/course_read.html', {'lessons': less, 'l':lessons[0]})
     else:
         return render(request, 'lesson/course_read.html', {'lessons': lessons, 'info': 'there are no lessons published yet'})
 
@@ -51,3 +64,14 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'lesson/signup.html', {'form': form, 'instructors': instructors})
+
+def enroll(request, pk):
+    p = get_object_or_404(Course, pk=pk)
+    if Student.objects.filter(course_enrolled_id=pk, student_id=request.user.id).exists():
+        return HttpResponseRedirect(reverse('course_read', args=(p.id,)))
+    enroll = Student(student=request.user, course_enrolled=p)
+    enroll.save()
+    # Always return an HttpResponseRedirect after successfully dealing
+    # with POST data. This prevents data from being posted twice if a
+    # user hits the Back button.
+    return HttpResponseRedirect(reverse('course_read', args=(p.id,)))
