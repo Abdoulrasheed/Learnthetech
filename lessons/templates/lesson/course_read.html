@@ -1,6 +1,7 @@
 {% extends 'lesson/base.html' %}
 {% load staticfiles %}
-{% block title %} Services {% endblock %}
+{% load embed_video_tags %}
+{% block title %} learnonline | read course {% endblock %}
 
 {% block banner %}
 <!-- banner -->
@@ -18,30 +19,29 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/"><span data-hover="Home">Home</span></a></li>
-						<li><a href="/courses/"><span data-hover="Courses">Courses</span></a></li>
-						<li><a href="/services/"><span data-hover="Services">Services</span></a></li>
-						<li><a href="/"><span data-hover="Blog">Blog</span></a></li>
+						<li><a href="/">Home</a></li>
+						<li class="active"><a href="/courses/">Courses</a></li>
+						<li><a href="/services/">Services</a></li>
+						<li><a href="/">Blog</a></li>
 						{% if user.is_authenticated %}
-						<li><a href="{% url 'logout' %}"><span data-hover="logout">logout</span></a></li>
+						<li><a href="{% url 'logout' %}">logout</a></li>
 						{% else %}
-						<li><a href="#register"><span data-hover="Register">Register</span></a></li>
-						<li><a href="{% url 'login' %}"><span data-hover="login">login</span></a></li>
+						<li><a href="#register">Register</a></li>
+						<li><a href="{% url 'login' %}">login</a></li>
 						{% endif %}
 					</ul>
-				</nav>
 			</div>
 			<div class="w3_agile_phone">
 				{% if user.is_authenticated %}
 				<p><i class="fa fa-user" aria-hidden="true"></i>logged as {{ user.username }}</p>
 				{% endif %}
 				{% for mobile in instructors %}
-				<p><i class="fa fa-phone" aria-hidden="true"></i>{{ mobile.phone }}</p>
+				<p><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:{{ mobile.phone }}">{{ mobile.phone }}</a></p>
 				{% endfor %}
 			</div>
-		
-		<div class="wthree_banner1_info">
-			<div class="container">
+			</nav>
+			<div class="wthree_banner1_info">
+				<div class="container">
 				{% if info %}
 				<h3><span class="fa fa-info-circle"> Hello! {{ request.user }} {{ info }}</span></h3>
 				{% else %}
@@ -49,13 +49,19 @@
 				<h4><span>{{ l.instructor }}</span></h4>
 				{% endif %}
 			</div>
-		</div>
+			</div>
 		</nav>
 	</div>
 <!-- //banner -->	
 {% endblock banner %}
 {% block content %}
 <!-- services -->
+<style type="text/css">
+	#video {
+    width: 100%;
+    height: auto;
+}
+</style>
 	<div class="courses">
 		<div class="container"> 	
 			{% for lessons in lessons %}
@@ -64,8 +70,13 @@
 					<p>0{{ forloop.counter }}</p>
 					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
 				</div>
-				<div class="w3_agile_team_grid_right">
+				<div style="margin-top: 40px" class="w3_agile_team_grid_right">
 					<h3><span>{{ lessons.lesson_title }}</span></h3>
+					{% if lessons.video %}
+					<div class="embed-responsive embed-responsive-16by9">
+  						<embed class="embed-responsive-item">{% video lessons.video '400x200' %}</embed>
+					</div>
+					{% endif %}
 					<p>{{ lessons.lesson_body|linebreaksbr }}</p>
 				</div>
 				<div class="clearfix"> </div>
@@ -75,7 +86,7 @@
 					<div class="agileits_w3layouts_services_grid1">
 						<div class="w3_agileits_services_grid1">
 							<div class="w3_agileits_services_grid1l">
-								<img src="{% static 'images/1.png' %}" alt=" " class="img-responsive" />
+								<img src="{{ lessons.instructor.photo.url }}" alt=" " class="img-responsive" />
 							</div>
 							<div class="w3_agileits_services_grid1r">
 								<ul>
@@ -96,6 +107,9 @@
 				<div class="clearfix"> </div>
 			</div>
 			{% endfor %}
+			{% if lessons.has_other_pages %}
+				{% include 'lesson/pagination.html' %}
+			{% endif %}
 		</div>
 	</div>
 <!-- //services -->
