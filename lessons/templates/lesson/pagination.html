@@ -1,0 +1,19 @@
+  <ul class="pagination">
+    {% if lessons.has_previous %}
+      <li><a href="?page={{ lessons.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in lessons.paginator.page_range %}
+      {% if lessons.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if lessons.has_next %}
+      <li><a href="?page={{ lessons.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
