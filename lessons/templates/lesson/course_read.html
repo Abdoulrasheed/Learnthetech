@@ -45,8 +45,14 @@
 				{% if info %}
 				<h3><span class="fa fa-info-circle"> Hello! {{ request.user }} {{ info }}</span></h3>
 				{% else %}
-				<h3><span>{{ l.instructor.course }}</span></h3>
-				<h4><span>{{ l.instructor }}</span></h4>
+				<h3>
+					<span>
+					{{ l.instructor.course }} 
+					</span>
+				</h3>
+				<h4>
+					<span class="thumbnail text-muted">Instructor: {{ l.instructor }}</span>
+				</h4>
 				{% endif %}
 			</div>
 			</div>
@@ -67,7 +73,7 @@
 			{% for lessons in lessons %}
 			<div class="w3_agile_team_grid">
 				<div class="w3_agile_team_grid_left">
-					<p>0{{ forloop.counter }}</p>
+					<p>01</p>
 					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
 				</div>
 				<div style="margin-top: 40px" class="w3_agile_team_grid_right">
@@ -86,7 +92,11 @@
 					<div class="agileits_w3layouts_services_grid1">
 						<div class="w3_agileits_services_grid1">
 							<div class="w3_agileits_services_grid1l">
-								<img src="{{ lessons.instructor.photo.url }}" alt=" " class="img-responsive" />
+								{% if lessons.instructor.photo %}
+								<img src="{{ lessons.instructor.photo.url }}" class="img-responsive" />
+								{% else %}
+								<img src="{% static 'images/1.png' %}" class="img-responsive" />
+								{% endif %}
 							</div>
 							<div class="w3_agileits_services_grid1r">
 								<ul>
@@ -100,7 +110,11 @@
 							<div class="clearfix"> </div>
 						</div>
 						<div class="w3_agileits_services_grid1">
+							{% if lessons.instructor.first_name %}
 							<p> {{ lessons.instructor.first_name }} {{ lessons.instructor.last_name }}</p>
+							{% else %}
+							<p>{{ request.user }}</p>
+							{% endif %}
 						</div>
 					</div>
 				</div>

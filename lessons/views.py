@@ -14,7 +14,6 @@ from django.core.urlresolvers import reverse
 @login_required
 def course_list(request):
     courses = Course.objects.all().order_by('-start_time')
-    
     ins = Instructor.objects.all()
     stud = User.objects.all()
 
@@ -24,12 +23,18 @@ def course_list(request):
     else:
         c_staff = 0
     c_courses = courses.count()
-    return render(request, 'lesson/courses.html', {'courses': courses, 'c_courses': c_courses, 'c_students': c_students, 'c_staff': c_staff})
+    return render(request, 'lesson/courses.html', {
+        'c_staff': c_staff,
+        'courses': courses,
+        'c_courses': c_courses,
+        'c_students': c_students
+        })
 
 
 @login_required
 def course_read(request, pk):
     lessons = Lesson.objects.filter(instructor_id = pk).order_by('-instructor_id')
+
     if lessons:
         page = request.GET.get('page', 1)
         paginator = Paginator(lessons, 1)
@@ -42,7 +47,10 @@ def course_read(request, pk):
             less = paginator.page(paginator.num_pages)
         return render(request, 'lesson/course_read.html', {'lessons': less, 'l':lessons[0]})
     else:
-        return render(request, 'lesson/course_read.html', {'lessons': lessons, 'info': 'there are no lessons published yet'})
+        return render(request, 'lesson/course_read.html', {
+        'lessons': lessons,
+        'info': 'there are no lessons published yet'
+         })
 
 @login_required
 def services(request):

@@ -74,16 +74,20 @@
 				{% for p in instructors %}
 				<div class="col-md-4 w3_agile_services_grid">
 					<div class="agile_services_grid1 wthree_services_grid1">
-						<h3 style="color: green">{{ p.course.title}}</h3>
+						<h3 class="thumbnail d-inline p-2" style="color: blue">{{ p.course.title}}</h3>
 						<div class="agile_services_grid1_sub">
-							<small style="color: green">{{ p.course.start_time }} - {{ p.course.finish_time }}</small>
+							<sup class="thumbnail d-inline p-2 text-white">{{ p.course.start_time }} - {{ p.course.finish_time }}</sup>
 						</div>
-						<h4><a href="{% url 'enroll' pk=p.course.pk%}"">Enroll now</a></span></h4>
+						<h4><a class="btn btn-info btn-lg href="{% url 'enroll' pk=p.course.pk%}"">Enroll now</a></span></h4>
 					</div>
 					<div class="agileits_w3layouts_services_grid1">
 						<div class="w3_agileits_services_grid1">
 							<div class="w3_agileits_services_grid1l">
+								{% if p.photo %}
+								<img src="{{ p.photo.url }}" alt=" " class="img-responsive img-circle" />
+								{% else %}
 								<img src="{% static 'images/1.png' %}" alt=" " class="img-responsive" />
+								{% endif %}
 							</div>
 							<div class="w3_agileits_services_grid1r">
 								<ul>

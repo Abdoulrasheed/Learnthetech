@@ -45,7 +45,7 @@
 			<div class="agile_banner_info">
 				<div class="agile_banner_info1">
 					<div id="typed-strings" class="agileits_w3layouts_strings">
-						<p>{{ user.first_name }} <i> Welcome to</i> Learnthtech</p>
+						<p>{{ user.first_name }} <i> Welcome to</i> Learnonline</p>
 						<p>we <i>  can help you build</i> your dreams</p>
 						<p><i>Technology</i> is a journey not a race</p>
 						<p>trust <i> in us !</i></p>
@@ -139,7 +139,7 @@
 		<div class="container">	
 			<div class="w3_agile_team_grid">
 				<div class="w3_agile_team_grid_left">
-					<p>02</p>
+					<p>01</p>
 					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
 				</div>
 				<div class="w3_agile_team_grid_right">
@@ -150,20 +150,50 @@
 			</div>
 			<div class="agileits_w3layouts_team_grids">
 				{% for ins in instructors %}
-				<div class="col-md-4 agileits_w3layouts_team_grid">
-					<h3>{{ ins.first_name }} {{ ins.last_name }}</h3>
+				<div style="margin-bottom: 50px" class="col-md-4 agileits_w3layouts_team_grid">
+					{% if ins.first_name %}
+					<h3>{{ ins.first_name }}
+					{% endif %}
+					{% if ins.last_name %}
+					{{ ins.last_name }}</h3>
+					{% endif %}
+					{% if ins.position %}
 					<p>{{ ins.position }}</p>
+					{% endif %}
 					<ul class="agileinfo_social_icons w3_agileits_social_icons">
-						<li><a href="https://facebook.com/{{ ins.facebook_id }}" class="w3_agileits_facebook">
-							<i class="fa fa-facebook" aria-hidden="true"></i></a>
+						{% if ins.facebook_id %}
+						<li>
+							<a href="https://facebook.com/{{ ins.facebook_id }}" class="w3_agileits_facebook">
+							<i class="fa fa-facebook" aria-hidden="true"></i>
+						</a>
 						</li>
-						<li><a href="https://twitter.com/{{ ins.twitter_handler }}" class="wthree_twitter">
-							<i class="fa fa-twitter" aria-hidden="true"></i></a>
+						{% endif %}
+						{% if ins.twitter_handler %}
+						<li>
+							<a href="https://twitter.com/{{ ins.twitter_handler }}" class="wthree_twitter">
+							<i class="fa fa-twitter" aria-hidden="true">
+								
+							</i></a>
 						</li>
-						<li><a href="https://plus.google.com/{{ ins.google_plus }}" class="agileinfo_google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-						<li><a href="https://www.pinterest.com/{{ ins.pinterest }}" class="agileits_pinterest"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+						{% endif %}
+						{% if ins.google_plus %}
+						<li>
+							<a href="https://plus.google.com/{{ ins.google_plus }}" class="agileinfo_google"><i class="fa fa-google-plus" aria-hidden="true"></i>
+							</a>
+						</li>
+						{% endif %}
+						{% if ins.pinterest %}
+						<li>
+							<a href="https://www.pinterest.com/{{ ins.pinterest }}" class="agileits_pinterest"><i class="fa fa-pinterest-p" aria-hidden="true"></i>
+							</a>
+						</li>
+						{% endif %}
 					</ul>
-					<img src="{{ lessons.instructor.photo.url }}" alt="{{ ins.first_name }}'s image appear here" class="img-responsive" />
+					{% if ins.photo %}
+					<img src="{{ ins.photo.url }}" alt="{{ ins.first_name }}'s image appear here" class="img-responsive" />
+					{% else %}
+					<img src="{% static 'images/1.jpg' %}" alt="{{ ins.first_name }}'s image appear here" class="img-responsive" />
+					{% endif %}
 				</div>
 				{% endfor %}
 				<div class="clearfix"> </div>

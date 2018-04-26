@@ -67,16 +67,22 @@
 					{% for list_of_courses in courses %}
 					<div style="margin-top: 10px;" class="agile_services_grid1 wthree_services_grid1">
 						<h3 style="color: #ffffff">
-							<a href="{% url 'course_read' pk=list_of_courses.pk %}">{{ list_of_courses.title }}</a>
+							<a href="{% url 'course_read' pk=list_of_courses.pk %}" class="thumbnail d-inline p-2 text-white">
+							{{ list_of_courses.title }}
+							</a>
 						</h3>
 						<div class="agile_services_grid1_sub">
 							<small style="color: #ffffff">
-							<b>{{ list_of_courses.start_time|date:"D d M Y" }}
+							<sup class="thumbnail d-inline p-2 text-white" style="color: blue">
+							{{ list_of_courses.start_time|date:"D d M Y" }}
 							  - 
-							{{ list_of_courses.finish_time|date:"D d M Y" }}</b>
+							{{ list_of_courses.finish_time|date:"D d M Y" }}
+							</sup>
 							</small>
 						</div>
-						<h4><a href="{% url 'enroll' pk=list_of_courses.pk%}"">Enroll now</a></span></h4>
+						<h4>
+							<a class="btn btn-info btn-lg" href="{% url 'enroll' pk=list_of_courses.pk%}"">Enroll now</a>
+						</h4>
 					</div>
 					<p style="margin-top: 10px" class="txt-responsive">{{ list_of_courses.course_description|safe }}</p>
 					{% endfor %}

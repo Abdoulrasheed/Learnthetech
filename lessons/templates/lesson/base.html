@@ -40,22 +40,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="w3agile_footer_grids">
 					<div class="col-md-4 w3agile_footer_grid">
 						<h3>About Us</h3>
-						<p>LearnOnline is a team of developers who usually give a free programming workshops to beginners and intermediate programmers who are passionate about programming in Yola, Nigeria. and now offers a complete online class for everyone interested in learning how to code with different perspective and area of choice which is totally free</span></p>
+						<p>Learnonline is a team of developers who usually give a free programming workshops to beginners and intermediate programmers who are passionate about programming in Yola, Nigeria. and now offers a complete online class for everyone interested in learning how to code with different perspective and area of choice which is totally free</span></p>
 					</div>
 					<div class="col-md-4 w3agile_footer_grid">
 						<h3>Contact Info</h3>
 						<ul>
-							<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:LearnOnline@gmail.com">LearnOnline@gmail.com</a></li>
+							<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:Learnonline@gmail.com">Learnonline@gmail.com</a></li>
 							<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+234 7033389645</li>
 						</ul>
 					</div>
 					<div class="col-md-4 w3agile_footer_grid w3agile_footer_grid1">
 						<h3>Navigation</h3>
 						<ul>
-							<li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="/">Blog</a></li>
+							<li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="https://mautechblog.pythonanywhere.com">Visit our Blog</a></li>
 							<li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="/class/">Home</a></li>
 							{% if user.is_authenticated %}
-							<li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="{% url 'logout' %}">Logout</a></li>
+							<li>
+								<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+								<a href="{% url 'logout' %}">Logout ({{ request.user }})</a>
+							</li>
 							{% else %}
 							<li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="#register">Register</a></li>
 							<li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="{% url 'login' %}">Login</a></li>
@@ -69,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="w3_agileits_copy_right_social">
 				<div class="col-md-6 agileits_w3layouts_copy_right">
-					<p>&copy; 2018 LearnOnline. All rights reserved | design <a href="http://w3layouts.com/">W3layouts</a></p>
+					<p>&copy; 2018 Learnonline. All rights reserved | design <a href="http://w3layouts.com/">W3layouts</a></p>
 				</div>
 				<div class="col-md-6 w3_agile_copy_right">
 					<ul class="agileinfo_social_icons">
