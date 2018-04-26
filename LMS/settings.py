@@ -13,7 +13,7 @@ SECRET_KEY = 'yw(@dnf783a6+6^-kub7g+@%hv&=8q==&a+g_9(fh*ymuszay-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'https://learninyola.herokuapp.com', '.herokuapp.com']
+ALLOWED_HOSTS = ['learnonline.pythonanywhere.com']
 
 
 # Application definition
